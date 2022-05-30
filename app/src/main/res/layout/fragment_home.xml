@@ -19,27 +19,31 @@
             android:text="Click the '+' to add a new entry"
             android:textSize="20sp" />
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/add_listing"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_gravity="center_horizontal"
-            android:backgroundTint="@color/blue"
-            android:clickable="true"
-            android:layout_margin="550dp"
-            app:srcCompat="@drawable/ic_add" />
-
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:id="@+id/layout_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/add_listing"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="center_horizontal"
+                    android:backgroundTint="@color/blue"
+                    android:clickable="true"
+                    android:layout_margin="550dp"
+                    app:srcCompat="@drawable/ic_add" />
+
+
+            </LinearLayout>
+        </ScrollView>
+
 
     </LinearLayout>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="Home 1"
-        android:textSize="30sp" />
 
 </RelativeLayout>

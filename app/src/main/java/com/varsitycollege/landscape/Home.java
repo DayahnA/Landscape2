@@ -10,6 +10,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
@@ -45,6 +47,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         }
         //https://www.youtube.com/watch?v=bjYstsO1PgI - ref
     }
+
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
