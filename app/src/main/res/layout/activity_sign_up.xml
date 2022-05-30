@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/grey"
+    tools:context=".sign_up">
+
+    <LinearLayout
+        android:id="@+id/head"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:padding="5dp">
+
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_toRightOf="@+id/title"
+            android:src="@drawable/logo"
+            android:padding="5dp"/>
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="top"
+            android:text="Landscape"
+            android:textColor="@color/blue"
+            android:textSize="40dp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/signUp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/head"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:gravity="left"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:text="SIGN UP"
+        android:textColor="@color/blue"
+        android:textSize="25dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/signUp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:gravity="left"
+        android:paddingBottom="5dp"
+        android:text="Please fill in all of the required information to successfully sign up with Landscape today!"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/text2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:gravity="left"
+        android:paddingBottom="5dp"
+        android:text="* This information will remain private"
+        android:textSize="16dp" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_below="@id/text2"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="?android:attr/listDivider"
+        android:paddingBottom="5dp" />
+
+    <TextView
+        android:id="@+id/text3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/divider"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:gravity="left"
+        android:padding="10dp"
+        android:text="*Required"
+        android:textColor="@color/red"
+        android:textSize="16dp" />
+
+
+    <TextView
+        android:id="@+id/email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text3"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:gravity="center"
+        android:text="* Email"
+        android:textSize="20dp" />
+
+    <EditText
+        android:id="@+id/txtEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        android:background="#35ffffff"
+        android:gravity="center"
+        android:padding="5dp"
+        android:textSize="20dp"
+        android:layout_below="@+id/email"
+        android:layout_margin="10dp"/>
+
+    <TextView
+        android:id="@+id/password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="* Password"
+        android:gravity="center"
+        android:textSize="20dp"
+        android:layout_below="@+id/txtEmail"
+        android:layout_margin="10dp" />
+
+    <EditText
+        android:id="@+id/pwBoxPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPassword"
+        android:background="#35ffffff"
+        android:gravity="center"
+        android:padding="5dp"
+        android:textSize="20dp"
+        android:layout_below="@+id/password"
+        android:layout_margin="10dp"/>
+
+    <TextView
+        android:id="@+id/confirm_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="* Confirm Password"
+        android:gravity="center"
+        android:textSize="20dp"
+        android:layout_below="@+id/pwBoxPassword"
+        android:layout_margin="10dp" />
+
+    <EditText
+        android:id="@+id/pwBoxConfirmPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPassword"
+        android:background="#35ffffff"
+        android:gravity="center"
+        android:padding="5dp"
+        android:textSize="20dp"
+        android:layout_below="@+id/confirm_password"
+        android:layout_margin="10dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_below="@+id/pwBoxConfirmPassword"
+        android:layout_margin="55dp">
+
+
+        <Button
+            android:id="@+id/btnBack"
+            android:layout_width="110dp"
+            android:layout_height="55dp"
+            android:backgroundTint="@color/blue"
+            android:textAlignment="center"
+            android:textSize="18dp"
+            android:text="Back"
+            android:layout_marginRight="110dp" />
+
+        <Button
+            android:id="@+id/btnSave"
+            android:layout_width="110dp"
+            android:layout_height="55dp"
+            android:backgroundTint="@color/blue"
+            android:text="Save"
+            android:textAlignment="center"
+            android:textSize="18dp"/>
+    </LinearLayout>
+
+
+</RelativeLayout>
