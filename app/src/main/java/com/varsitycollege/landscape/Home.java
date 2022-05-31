@@ -10,8 +10,6 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
@@ -59,7 +57,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                 break;
             case R.id.add:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new AddListing()).commit();
+                        new AddListingFragment()).commit();
                 break;
             case R.id.help:
                 Toast.makeText(this, "help", Toast.LENGTH_SHORT).show();
