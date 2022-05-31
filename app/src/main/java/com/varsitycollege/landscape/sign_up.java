@@ -46,6 +46,7 @@ public class sign_up extends AppCompatActivity {
         password = findViewById(R.id.pwBoxPassword);
         confirmPass = findViewById(R.id.pwBoxConfirmPassword);
 
+        //https://www.youtube.com/watch?v=gaykE36N7PY -ref
         progressDialog = new ProgressDialog(this);
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
@@ -62,13 +63,12 @@ public class sign_up extends AppCompatActivity {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 ValidatingDetails();
-
             }
         });
     }
 
+    //https://www.youtube.com/watch?v=gaykE36N7PY -ref
     private void ValidatingDetails() {
         String inputEmail = email.getText().toString();
         String inputPass = password.getText().toString();
@@ -92,7 +92,6 @@ public class sign_up extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
                     progressDialog.dismiss();
-
                     startActivity(new Intent(sign_up.this, MainActivity.class));
                     //https://www.youtube.com/watch?v=TxpN7uWJyBw -ref
 
