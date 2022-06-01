@@ -37,9 +37,8 @@ import java.util.ArrayList;
 public class AddListingFragment extends Fragment {
     ImageView imageView;
     FloatingActionButton fab;
-    private static final int REQUEST_IMAGE_CAPTURE = 12345;
+    private static final int PICK_FROM_GALLERY = 1;
     private static final int REQUEST_IMAGE_CAPTURE_PERMISSION = 100;
-    private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 1888;
     private EditText txtTitle;
     private Spinner spnCategory;
     private EditText txtCaption;
@@ -84,7 +83,6 @@ public class AddListingFragment extends Fragment {
             }
         });
 
-
 //         btn_save.setOnClickListener(new View.OnClickListener() {
 //             @Override
 //             public void onClick(View view) {
@@ -96,15 +94,15 @@ public class AddListingFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 if (ActivityCompat.checkSelfPermission(container.getContext(),
-                        Manifest.permission.CAMERA)
+                        Manifest.permission.READ_EXTERNAL_STORAGE)
                         != PackageManager.PERMISSION_GRANTED) {
-                    final String[] permissions = {Manifest.permission.CAMERA};
+                    final String[] permissions = {Manifest.permission.READ_EXTERNAL_STORAGE};
 
                     ActivityCompat.requestPermissions(getActivity(),
                             permissions, REQUEST_IMAGE_CAPTURE_PERMISSION);
                 } else {
-                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                    startActivityForResult(intent, REQUEST_IMAGE_CAPTURE);
+                    Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                    startActivityForResult(intent, PICK_FROM_GALLERY);
 
                 }
             }
@@ -115,22 +113,22 @@ public class AddListingFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        Fragment fragment = getFragmentManager().findFragmentByTag("Your Fragment Tag");
-       onActivityResult(requestCode, resultCode, data);
-        if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
-            if (resultCode == Activity.RESULT_OK) {
 
-                Bitmap bmp = (Bitmap) data.getExtras().get("data");
-                ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        if (data != null) {
+            Uri selectedImage  = data.getData();
+            String[] filePathColumn = {MediaStore.Images.Media.DATA};
+            Cursor cursor = getActivity().getContentResolver().query(selectedImage, filePathColumn, null, null, null);
 
-                bmp.compress(Bitmap.CompressFormat.PNG, 100, stream);
-                byte[] byteArray = stream.toByteArray();
+            cursor.moveToFirst();
+            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+            String picturePath = cursor.getString(columnIndex);
+            imageView.setImageBitmap(BitmapFactory.decodeFile(picturePath));
 
-                Bitmap bitmap = BitmapFactory.decodeByteArray(byteArray, 0,
-                        byteArray.length);
-                imageView.setImageBitmap(bitmap);
-
-            }
+            cursor.close();
+        } else {
+            Toast.makeText(getActivity(), "Try Again!!", Toast.LENGTH_SHORT).show();
         }
+        super.onActivityResult(requestCode, resultCode, data);
     }
+
 }
