@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "24513932953",
+    "project_id": "landscape-97ec7",
+    "storage_bucket": "landscape-97ec7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:24513932953:android:bb80d364856bbabc2a5208",
+        "android_client_info": {
+          "package_name": "com.varsitycollege.landscape"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "24513932953-mqlvkhtkb3nji7hkudv5pj2uhcaj4oob.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBGKbAuep02IufpuhiLCn78cHd0V33x4m8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "24513932953-mqlvkhtkb3nji7hkudv5pj2uhcaj4oob.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

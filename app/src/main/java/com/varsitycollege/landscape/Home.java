@@ -46,6 +46,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         //https://www.youtube.com/watch?v=bjYstsO1PgI - ref
     }
 
+
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         //handling clicks, by getting menu items id and opening different pages.
@@ -56,7 +57,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                 break;
             case R.id.add:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new AddListing()).commit();
+                        new AddListingFragment()).commit();
                 break;
             case R.id.help:
                 Toast.makeText(this, "help", Toast.LENGTH_SHORT).show();
