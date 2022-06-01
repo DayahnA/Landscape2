@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/grey"
     android:padding="20dp">
 
@@ -92,24 +93,61 @@
         android:id="@+id/description_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginTop="10dp"
-        android:layout_below="@+id/caption_layout">
+        android:layout_below="@+id/caption_layout"
+        android:layout_marginTop="34dp"
+        android:orientation="vertical">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
             android:text="Description:"
-            android:textSize="18dp"
-            android:layout_marginBottom="10dp"/>
+            android:textSize="18dp" />
 
         <EditText
             android:id="@+id/txtDescription"
             android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:inputType="text|textMultiLine"
-            android:layout_marginLeft="12dp"/>
+            android:layout_marginLeft="12dp"
+            android:inputType="text|textMultiLine" />
 
     </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/description_layout"
+        android:layout_marginTop="40dp"
+        android:orientation="horizontal">
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_addimage"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="60dp"
+            android:layout_marginTop="25dp"
+            android:clickable="true"
+            app:backgroundTint="@color/blue"
+            app:srcCompat="@drawable/ic_add" />
+
+        <TextView
+            android:id="@+id/addimageText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="55dp"
+            android:layout_marginTop="90dp"
+            android:text="Add Image"
+            android:textAlignment="center" />
+
+        <Button
+            android:id="@+id/save"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_marginLeft="215dp"
+            android:layout_marginTop="35dp"
+            android:text="Save" />
+
+
+    </RelativeLayout>
 
 </RelativeLayout>
