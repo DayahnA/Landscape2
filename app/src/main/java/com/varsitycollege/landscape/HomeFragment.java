@@ -57,6 +57,7 @@ public class HomeFragment extends Fragment {
     }
 
     public void popUpCategory(LinearLayout layout) {
+
         dialogBuilder = new AlertDialog.Builder(getActivity());
         final View categoryPopUp = getLayoutInflater().inflate(R.layout.activity_category, null);
         cat_name = categoryPopUp.findViewById(R.id.category_name);
@@ -100,8 +101,6 @@ public class HomeFragment extends Fragment {
                 }
             }
         });
-
-
         //https://www.youtube.com/watch?v=4GYKOzgQDWI - ref
     }
 
