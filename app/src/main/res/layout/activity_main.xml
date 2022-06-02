@@ -7,8 +7,6 @@
     android:background="@color/grey"
     tools:context=".MainActivity">
 
-
-
     <LinearLayout
         android:id="@+id/head"
         android:layout_width="match_parent"
@@ -110,7 +108,7 @@
         android:layout_marginBottom="15dp"
         android:background="#35ffffff"
         android:ems="10"
-        android:gravity="left"
+        android:gravity="center"
         android:inputType="textEmailAddress"
         android:padding="10dp"
         android:textSize="20dp" />
