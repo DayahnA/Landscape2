@@ -13,7 +13,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Landscape">
         <activity
-            android:name=".AddListing"
+            android:name=".ViewEntries"
+            android:exported="false" />
+        <activity
+            android:name=".CategoryView"
             android:exported="false" />
         <activity
             android:name=".sign_up"

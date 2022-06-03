@@ -10,6 +10,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
@@ -17,19 +18,22 @@ import com.google.android.material.navigation.NavigationView;
 public class Home extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private DrawerLayout drawer;
+    private Button save;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
         Toolbar toolbar = findViewById(R.id.nav_toolbar);
+        save = findViewById(R.id.save);
         //setSupportActionBar(toolbar);
 
         drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        ActionBarDrawerToggle toggle =new ActionBarDrawerToggle(this, drawer, toolbar,
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
@@ -39,7 +43,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                 new HomeFragment()).commit();
         navigationView.setCheckedItem(R.id.home);
 
-        if(savedInstanceState == null){
+        if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
             navigationView.setCheckedItem(R.id.home);
         }
@@ -50,23 +54,22 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         //handling clicks, by getting menu items id and opening different pages.
-        switch(item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.home:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new HomeFragment()).commit();
-                break;
-            case R.id.add:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new AddListingFragment()).commit();
                 break;
+            case R.id.add:
+                Toast.makeText(this, "Please create category", Toast.LENGTH_SHORT).show();
+                break;
             case R.id.help:
-                Toast.makeText(this, "help", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Opens demonstration video", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.logout:
-                Toast.makeText(this, "logged out", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Logged out", Toast.LENGTH_SHORT).show();
                 Intent intent;
-                    intent = new Intent(Home.this, MainActivity.class);
-                    startActivity(intent);
+                intent = new Intent(Home.this, MainActivity.class);
+                startActivity(intent);
                 break;
 
             //https://www.youtube.com/watch?v=bjYstsO1PgI - ref
@@ -79,10 +82,10 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
     }
 
     @Override
-    public void onBackPressed(){
-        if(drawer.isDrawerOpen(GravityCompat.START)){
+    public void onBackPressed() {
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
-        } else{
+        } else {
             super.onBackPressed();
         }
     }

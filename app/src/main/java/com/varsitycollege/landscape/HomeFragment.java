@@ -1,5 +1,6 @@
 package com.varsitycollege.landscape;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -91,6 +92,19 @@ public class HomeFragment extends Fragment {
                     btn.setText(cat_name.getText());
                     btn.setId(1 + clickCount);
                     layout.addView(btn);
+
+                    btn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+
+                            Intent intent = new Intent(getActivity(), CategoryView.class);
+                            Bundle bundle = new Bundle();
+                            bundle.putString("cat_name", name);
+                            bundle.putString("cat_goal", goal);
+                            intent.putExtras(bundle);
+                            startActivity(intent);
+                        }
+                    });
 
                     dialog.hide();
                 }
