@@ -12,16 +12,86 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+// firebase importing database
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-public class AddListing extends AppCompatActivity {
-//    String[] categories = {"Water", "Animals", "Plants/Trees", "Land", "Life", "Sky", "Flowers", "Space"};
-//    Spinner category;
 
+
+
+
+
+
+    public class AddListing extends AppCompatActivity implements View.OnClickListener{
+
+        FirebaseAuth mAuth;
+        FirebaseUser mUser;
+        final EditText txtTitle =findViewById(R.id.txtTitle);
+        final  EditText txtCaption =findViewById(R.id.txtCaption);
+        final  EditText txtDescription =findViewById(R.id.txtDescription);
+        final Spinner spnCategory =findViewById(R.id.spnCategory);
+        //creating an instance of database
+        FirebaseDatabase db = FirebaseDatabase.getInstance();
+
+        /// create reference of database
+        DatabaseReference dbRef = db.getReference(ListingDetails.class.getSimpleName());
+        //initialize  variables
+        String[] categories = {"Water", "Animals", "Plants/Trees", "Land", "Life", "Sky", "Flowers", "Space"};
+        Spinner category;
+        AddListing ad = new AddListing();
+        Button saveAddList = (Button) findViewById(R.id.saveAddList);
+        @Override
+        protected void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+
+            // Set the content of the activity to use the activity_main.xml layout file
+            setContentView(R.layout.fragment_add_listing);
+
+
+
+        //set the listener
+        saveAddList.setOnClickListener(this);
+
+
+
+
+
+        //populating a database
+
+
+        }
+
+        @Override
+        public void onClick(View view) {
+         if (view.getId()== R.id.saveAddList)
+         {
+              ListingDetails ld = new ListingDetails(txtTitle.getText().toString(), txtCaption.getText().toString(), txtDescription.getText().toString(), spnCategory.toString());
+              add(ld);
+         }
+        }
+
+        public void add(ListingDetails ld)
+        {
+
+            dbRef.push().setValue(ld);
+
+
+
+        }
+
+        //
+    }
+
+/*
     ImageView selectedImage;
     FloatingActionButton fab;
     private static final int REQUEST_IMAGE_CAPTURE = 0;
@@ -77,5 +147,8 @@ public class AddListing extends AppCompatActivity {
 //        if (requestCode == REQUEST_IMAGE_CAPTURE && data != null) {
 //            Bitmap bitmap = (Bitmap) data.getExtras().get("data");
 //            fab.setImageBitmap(bitmap);
-//        }
-    }
+//
+        }
+ */
+
+
