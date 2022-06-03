@@ -47,7 +47,7 @@ public class AddListingFragment extends Fragment {
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 //        return inflater.inflate(R.layout.fragment_add_listing, container, false);
 
         final View rootView = inflater.inflate(R.layout.fragment_add_listing, container, false);
