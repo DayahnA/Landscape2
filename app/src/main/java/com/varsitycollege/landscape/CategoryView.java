@@ -187,8 +187,5 @@ public class CategoryView extends AppCompatActivity {
                         new AddListingFragment()).commit();
             }
         });
-
-
     }
-
 }
