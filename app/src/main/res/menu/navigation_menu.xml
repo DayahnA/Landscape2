@@ -8,6 +8,9 @@
         <item android:id="@+id/add"
             android:icon="@drawable/ic_menu_add"
             android:title="Add Listing" />
+        <item android:id="@+id/graph"
+            android:icon="@drawable/ic_menu_bar"
+            android:title="View Graph" />
         <item android:id="@+id/help"
             android:icon="@drawable/ic_menu_help"
             android:title="Help" />

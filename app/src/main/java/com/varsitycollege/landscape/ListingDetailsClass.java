@@ -3,7 +3,7 @@ package com.varsitycollege.landscape;
 public class ListingDetailsClass {
     private String title;
     private String category;
-//    private String imageUrl;
+    private String imageUrl;
     private String caption;
     private String description;
 
@@ -11,11 +11,13 @@ public class ListingDetailsClass {
 
     }
 
-    public ListingDetailsClass(String title, String category, String caption, String description) {
+    public ListingDetailsClass(String title, String category, String imageUrl, String caption, String description){
         this.title = title;
         this.category = category;
+        this.imageUrl = imageUrl;
         this.caption = caption;
         this.description = description;
+
     }
 
     public String getTitle() { return title; }
@@ -26,9 +28,9 @@ public class ListingDetailsClass {
 
     public void setCategory(String category) { this.category = category; }
 
-//    public String getImageUrl() { return imageUrl; }
-//
-//    public void setImageUrl(String imageUrl) { this.imageUrl = imageUrl; }
+   public String getImageUrl() { return imageUrl; }
+
+    public void setImageUrl(String imageUrl) { this.imageUrl = imageUrl; }
 
     public String getCaption() { return caption; }
 

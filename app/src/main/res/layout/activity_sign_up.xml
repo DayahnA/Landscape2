@@ -11,15 +11,17 @@
         android:id="@+id/head"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
         android:padding="5dp">
 
         <ImageView
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
             android:layout_toRightOf="@+id/title"
-            android:src="@drawable/logo"
-            android:padding="5dp"/>
+            android:padding="5dp"
+            android:src="@drawable/logo" />
 
         <TextView
             android:id="@+id/title"
@@ -28,7 +30,7 @@
             android:gravity="top"
             android:text="Landscape"
             android:textColor="@color/blue"
-            android:textSize="40dp"
+            android:textSize="50dp"
             android:textStyle="bold" />
     </LinearLayout>
 
@@ -38,13 +40,12 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/head"
         android:layout_marginLeft="20dp"
+        android:layout_marginTop="15dp"
         android:layout_marginRight="20dp"
         android:gravity="left"
-        android:paddingTop="5dp"
-        android:paddingBottom="5dp"
         android:text="SIGN UP"
         android:textColor="@color/blue"
-        android:textSize="25dp"
+        android:textSize="30dp"
         android:textStyle="bold" />
 
     <TextView
@@ -53,9 +54,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/signUp"
         android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
         android:layout_marginRight="20dp"
         android:gravity="left"
-        android:paddingBottom="5dp"
         android:text="Please fill in all of the required information to successfully sign up with Landscape today!"
         android:textSize="20dp" />
 
@@ -67,7 +68,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:gravity="left"
-        android:paddingBottom="5dp"
+        android:layout_marginTop="10dp"
         android:text="* This information will remain private"
         android:textSize="16dp" />
 
@@ -79,7 +80,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:background="?android:attr/listDivider"
-        android:paddingBottom="5dp" />
+        android:layout_marginTop="10dp" />
 
     <TextView
         android:id="@+id/text3"
@@ -101,7 +102,6 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/text3"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
         android:gravity="center"
@@ -180,28 +180,28 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:layout_below="@+id/pwBoxConfirmPassword"
-        android:layout_margin="55dp">
+        android:layout_marginBottom="20dp"
+        android:layout_alignParentBottom="true">
 
 
         <Button
             android:id="@+id/btnBack"
-            android:layout_width="110dp"
-            android:layout_height="55dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="110dp"
             android:backgroundTint="@color/blue"
-            android:textAlignment="center"
-            android:textSize="18dp"
             android:text="Back"
-            android:layout_marginRight="110dp" />
+            android:textAlignment="center"
+            android:textSize="18dp" />
 
         <Button
             android:id="@+id/btnSave"
-            android:layout_width="110dp"
-            android:layout_height="55dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:backgroundTint="@color/blue"
             android:text="Save"
             android:textAlignment="center"
-            android:textSize="18dp"/>
+            android:textSize="18dp" />
     </LinearLayout>
 
 
