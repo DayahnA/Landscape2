@@ -2,6 +2,7 @@ package com.varsitycollege.landscape;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -29,21 +30,37 @@ import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class AddListingFragment extends Fragment {
     ImageView imageView;
     FloatingActionButton fab;
-    private static final int PICK_FROM_GALLERY = 1;
+    private static final int REQUEST_IMAGE_CAPTURE = 1;
     private static final int REQUEST_IMAGE_CAPTURE_PERMISSION = 100;
+    private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 1888;
+
     private EditText txtTitle;
     private Spinner spnCategory;
     private EditText txtCaption;
     private EditText txtDescription;
     private Button btn_save;
+    public Uri selectedImageUri;
+
+    private FirebaseStorage storage;
+    private StorageReference storageReference;
 
     @Nullable
     @Override
@@ -51,13 +68,16 @@ public class AddListingFragment extends Fragment {
 //        return inflater.inflate(R.layout.fragment_add_listing, container, false);
 
         final View rootView = inflater.inflate(R.layout.fragment_add_listing, container, false);
-         fab = (FloatingActionButton) rootView.findViewById(R.id.fab_addimage);
+
+        fab = (FloatingActionButton) rootView.findViewById(R.id.fab_addimage);
         imageView = (ImageView) rootView.findViewById(R.id.image);
         txtTitle = (EditText) rootView.findViewById(R.id.txtTitle);
         txtCaption= (EditText) rootView.findViewById(R.id.txtCaption);
         txtDescription = (EditText) rootView.findViewById(R.id.txtDescription);
+        btn_save = (Button) rootView.findViewById(R.id.save);
 
-        // Adding category names to spinner https://www.tutorialspoint.com/how-can-i-add-items-to-a-spinner-in-android
+        // Adding category names to spinner
+        // Reference: Tutorialspoint. 2022. [Online]. Available on: https://www.tutorialspoint.com/how-can-i-add-items-to-a-spinner-in-android
         Spinner spinner = rootView.findViewById(R.id.spnCategory);
         ArrayList<String> arrayList = new ArrayList<>();
         arrayList.add("Water");
@@ -71,6 +91,7 @@ public class AddListingFragment extends Fragment {
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getContext(),  android.R.layout.simple_spinner_dropdown_item, arrayList);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(arrayAdapter);
+
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
         {
             @Override
@@ -83,52 +104,59 @@ public class AddListingFragment extends Fragment {
             }
         });
 
-//         btn_save.setOnClickListener(new View.OnClickListener() {
-//             @Override
-//             public void onClick(View view) {
-//
-//             }
-//         });
-
+        //Gallery permission and selecting an image in gallery
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (ActivityCompat.checkSelfPermission(container.getContext(),
-                        Manifest.permission.READ_EXTERNAL_STORAGE)
+                        Manifest.permission.CAMERA)
                         != PackageManager.PERMISSION_GRANTED) {
-                    final String[] permissions = {Manifest.permission.READ_EXTERNAL_STORAGE};
+                    final String[] permissions = {Manifest.permission.CAMERA};
 
                     ActivityCompat.requestPermissions(getActivity(),
                             permissions, REQUEST_IMAGE_CAPTURE_PERMISSION);
                 } else {
-                    Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                    startActivityForResult(intent, PICK_FROM_GALLERY);
+                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                    startActivityForResult(intent, REQUEST_IMAGE_CAPTURE);
 
                 }
             }
         });
 
+        btn_save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Get all values
+                String title = txtTitle.getText().toString();
+                String category = spnCategory.getSelectedItem().toString();
+//                String imageUrl = .toString();
+                String caption = txtCaption.getText().toString();
+                String description = txtTitle.getText().toString();
+                ListingDetailsClass listingDetails = new ListingDetailsClass(title, category,caption,description);
+            }
+        });
         return rootView;
     }
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        Fragment fragment = getFragmentManager().findFragmentByTag("Your Fragment Tag");
+        onActivityResult(requestCode, resultCode, data);
+        if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
+            if (resultCode == Activity.RESULT_OK) {
 
-        if (data != null) {
-            Uri selectedImage  = data.getData();
-            String[] filePathColumn = {MediaStore.Images.Media.DATA};
-            Cursor cursor = getActivity().getContentResolver().query(selectedImage, filePathColumn, null, null, null);
+                Bitmap bmp = (Bitmap) data.getExtras().get("data");
+                ByteArrayOutputStream stream = new ByteArrayOutputStream();
 
-            cursor.moveToFirst();
-            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-            String picturePath = cursor.getString(columnIndex);
-            imageView.setImageBitmap(BitmapFactory.decodeFile(picturePath));
+                bmp.compress(Bitmap.CompressFormat.PNG, 100, stream);
+                byte[] byteArray = stream.toByteArray();
 
-            cursor.close();
-        } else {
-            Toast.makeText(getActivity(), "Try Again!!", Toast.LENGTH_SHORT).show();
+                Bitmap bitmap = BitmapFactory.decodeByteArray(byteArray, 0,
+                        byteArray.length);
+                imageView.setImageBitmap(bitmap);
+
+            }
         }
-        super.onActivityResult(requestCode, resultCode, data);
     }
 
 }
